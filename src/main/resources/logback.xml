@@ -1,0 +1,42 @@
+<configuration scan="true" scanPeriod="10 seconds">
+    <property name="LOG_PATH" value="D:/loyal" />
+    <!--按天生成日志-->
+    <appender name="RollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_PATH}/info_yuan.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/info-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <maxHistory>15</maxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d %p %X{log_message_point_id} %logger - %m%n</Pattern>
+        </layout>
+    </appender>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d %p %X{log_message_point_id} %logger.%M - %m%n</pattern>
+		</layout>
+        <!-- 
+        	或
+	        <encoder>
+	            <pattern>%d %p %X{log_message_point_id} %logger.%M - %m%n</pattern>
+	        </encoder> 
+        -->
+    </appender>
+    <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
+    	<!-- 日志异步到数据库 -->
+    	<!-- 需要手动在数据创建三张表，执行logback-classic jar包下ch.qos.logback.classic/db/script/mysql.sql脚本 -->
+    	<connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+   			<driverClass>com.mysql.jdbc.Driver</driverClass>
+   			<url>jdbc:mysql://localhost:3306/sbatch</url>
+   			<user>root</user>
+   			<password>admin</password>
+    	</connectionSource>
+    </appender>
+    
+     <root level="INFO">
+     	<appender-ref ref="DB" />
+     	<appender-ref ref="console"/>
+        <appender-ref ref="RollingFile" />
+    </root>
+    
+</configuration>
