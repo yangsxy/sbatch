@@ -2,6 +2,7 @@ package cn.yuan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.stereotype.Controller;
@@ -22,5 +23,10 @@ public class Application extends SpringBootServletInitializer {
 		ModelAndView mv = new ModelAndView("home");
 		mv.addObject("hi", "hhahhh");
 		return mv;
+	}
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		// TODO Auto-generated method stub
+		return builder.sources(Application.class);
 	}
 }

@@ -58,8 +58,7 @@ import org.springframework.stereotype.Component;
 	     */  
 	    @Override  
 	    public void beforeJob(JobExecution jobExecution) {  
-	        // TODO Auto-generated method stub  
-	        super.beforeJob(jobExecution);  
+	    	
 	    }  
 	      
 	}  

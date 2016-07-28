@@ -6,7 +6,7 @@
 <groupId>cn.yuan</groupId>
 <artifactId>sbatch</artifactId>
 <version>1.0-SNAPSHOT</version>
-<packaging>jar</packaging>
+<packaging>war</packaging>
 <name>sbatch</name>
 <url>http://www.sbatch.com</url>
 
@@ -16,6 +16,7 @@
  <commons-lang3>3.3.2</commons-lang3>
  <shiro.version>1.2.4</shiro.version>
  <mapper.version>3.3.6</mapper.version>
+ <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
 </properties>
 <dependencies>
  		<dependency>

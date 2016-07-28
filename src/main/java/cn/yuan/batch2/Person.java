@@ -43,7 +43,10 @@ public class Person {
 	public void setPersonSex(String personSex) {
 		this.personSex = personSex;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Person [personId=" + personId + ", personName=" + personName + ", personAge=" + personAge
+				+ ", personSex=" + personSex + "]";
+	}
 	
 }

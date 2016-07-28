@@ -12,6 +12,7 @@ import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
@@ -32,24 +33,13 @@ public class PersonBatchConfiguration {
 	private static final String PERSON_INSERT = "insert into Person (personName,personAge,personSex)values(:personName,:personAge,:personSex)";
 	
 	@Autowired
-	private JobBuilderFactory jobs;
-	@Autowired
 	private StepBuilderFactory steps;
+	//1：读数据
 	@Bean
 	public ItemReader<Person> reader(DataSource dataSource){
-//		FlatFileItemReader<Person> reader = new FlatFileItemReader<>();
-//		reader.setResource(new ClassPathResource("sample-data.csv"));
-//		reader.setLineMapper(new DefaultLineMapper<Person>() {{  
-//            setLineTokenizer(new DelimitedLineTokenizer() {{  
-//                setNames(new String[] { "personName","personAge","personSex" });  
-//            }});  
-//            setFieldSetMapper(new BeanWrapperFieldSetMapper<Person>() {{  
-//                setTargetType(Person.class);  
-//            }});  
-//        }});  
 		JdbcCursorItemReader<Person> reader = new JdbcCursorItemReader<>();
 		reader.setDataSource(dataSource);
-		reader.setSql("select o from Person o");
+		reader.setSql("select * from person limit 1");
 		reader.setRowMapper(new RowMapper<Person>() {
 			
 			@Override
@@ -64,6 +54,12 @@ public class PersonBatchConfiguration {
 		});
         return reader;  
 	}
+	//2：处理数据
+	@Bean
+	public PersonItemProcessor processor(){
+		return new PersonItemProcessor();
+	}
+	//3：写数据
 	@Bean
 	public ItemWriter<Person> writer(DataSource dataSource){
 		JdbcBatchItemWriter<Person> writer = new JdbcBatchItemWriter<Person>();  
@@ -73,13 +69,12 @@ public class PersonBatchConfiguration {
         return writer; 
 	}
 	@Bean  
-    public Job importUserJob(@Qualifier("step1")Step s1) {  
+    public Job importUserJob(JobBuilderFactory jobs, @Qualifier("step1")Step s1,JobExecutionListener listener) {  
         return jobs.get("importUserJob")  
-//                .incrementer(new RunIdIncrementer())  
-//                .listener(listener)  
-                .start(s1)
-//                .flow(s1)  
-//                .end()  
+                .incrementer(new RunIdIncrementer())  
+                .listener(listener)  
+                .flow(s1)  
+                .end()  
                 .build();  
     }  
   

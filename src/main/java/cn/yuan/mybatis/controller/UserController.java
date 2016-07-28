@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.yuan.mybatis.dao.UserMapper;
+import cn.yuan.mybatis.entity.User;
 
 
 @Controller
@@ -30,5 +31,16 @@ public class UserController {
 	public Object getUserById(){
 		logger.info("I'm in the userController.");
 		return userMapper.selectByPrimaryKey(2);
+	}
+	@RequestMapping("/insert")
+	@ResponseBody
+	public Object writeAUser(){
+		logger.info("I'll write a user into db");
+		User user = new User();
+		user.setAge("26");
+		user.setName("何淑星");
+		user.setBalance(100.0);
+		userMapper.insert(user);
+		return userMapper.selectUserByName(user.getName());
 	}
 }
