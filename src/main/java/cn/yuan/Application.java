@@ -21,7 +21,7 @@ public class Application extends SpringBootServletInitializer {
 	public ModelAndView home(){
 		
 		ModelAndView mv = new ModelAndView("home");
-		mv.addObject("hi", "hhahhh");
+		mv.addObject("hi", "啦啦啦啦");
 		return mv;
 	}
 	@Override

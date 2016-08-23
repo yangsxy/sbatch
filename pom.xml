@@ -16,6 +16,7 @@
  <commons-lang3>3.3.2</commons-lang3>
  <shiro.version>1.2.4</shiro.version>
  <mapper.version>3.3.6</mapper.version>
+ <odps.version>0.21.3-public</odps.version>
  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
 </properties>
 <dependencies>
@@ -113,6 +114,49 @@
     		<artifactId>pagehelper</artifactId>
     		<version>4.1.0</version>
     	</dependency>
+    	<!-- ODPS start-->
+    	<dependency>
+    		<groupId>com.aliyun.odps</groupId>
+    		<artifactId>odps-sdk-core</artifactId>
+    		<version>${odps.version}</version>
+    	</dependency>
+    	<dependency>
+			<groupId>com.aliyun.odps</groupId>
+			<artifactId>odps-sdk-commons</artifactId>
+			<version>${odps.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aliyun.odps</groupId>
+			<artifactId>odps-sdk-udf</artifactId>
+			<version>${odps.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aliyun.odps</groupId>
+			<artifactId>odps-sdk-mapred</artifactId>
+			<version>${odps.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aliyun.odps</groupId>
+			<artifactId>odps-sdk-graph</artifactId>
+			<version>${odps.version}</version>
+		</dependency>
+		<!-- odps end -->
+		<!--ali-cdp-sdk -->
+		<dependency>
+			<groupId>com.alibaba.cdp</groupId>
+			<artifactId>cdp-sdk-java</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<!-- ali-cdp-end -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3</version>
+		</dependency>
+		
 </dependencies>
 <build>
 <plugins>

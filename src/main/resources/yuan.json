@@ -1,0 +1,38 @@
+{
+	"type": "job",
+	"traceId": "job_bweb_logger_items",
+	"version": "1.0",
+	"configuration": {
+		"reader": {
+			"plugin": "mysql",
+			"parameter": {
+				"jdbcUrl": "jdbc:mysql://rdst5ai4d32fe3qd6if46public.mysql.rds.aliyuncs.com:3306/calm_test?useUnicode=true&characterEncoding=utf-8",
+				"table": "bweb_logger",
+				"splitPk": "id",
+				"username": "uprd_stf_qry",
+				"password": "dZZglXoOrJ5WfgvVOnPh",
+				"column": [
+					"*"
+				],
+				"where": "  Date(date) >= '#startDate#'  and Date(date) <= '#endDate#'   "
+			}
+		},
+		"writer": {
+			"plugin": "MySQL",
+			"parameter": {
+				"writeMode": "insert",
+				"jdbcUrl": "jdbc:mysql://rdst5ai4d32fe3qd6if46.mysql.rds.aliyuncs.com:3306/calm_dev?useUnicode=true&characterEncoding=utf-8",
+				"table": "bweb_logger_yuan",
+				"splitPk": "id",
+				"username": "dev_stf_wt",
+				"password": "yk0GeXVTboygwmjymR5X",
+				"column": [
+					"*"
+				],
+				"preSql": [
+					"delete from bweb_logger_yuan;"
+				]
+			}
+		}
+	}
+}

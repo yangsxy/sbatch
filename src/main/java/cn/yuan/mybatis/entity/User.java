@@ -18,8 +18,18 @@ public class User {
 	    private String age;
 		@Column
 	    private Double balance;
+		@Column(name="is_delete")
+		private Integer isDelete;
+		
+	    public Integer getIsDelete() {
+			return isDelete;
+		}
 
-	    public Integer getId() {
+		public void setIsDelete(Integer isDelete) {
+			this.isDelete = isDelete;
+		}
+
+		public Integer getId() {
 	        return id;
 	    }
 
@@ -50,4 +60,11 @@ public class User {
 	    public void setBalance(Double balance) {
 	        this.balance = balance;
 	    }
+
+		@Override
+		public String toString() {
+			return "User [id=" + id + ", name=" + name + ", age=" + age + ", balance=" + balance + ", isDelete="
+					+ isDelete + "]";
+		}
+	    
 }
