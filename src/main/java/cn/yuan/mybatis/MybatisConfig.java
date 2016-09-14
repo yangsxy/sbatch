@@ -38,6 +38,7 @@ public class MybatisConfig implements TransactionManagementConfigurer{
         Properties properties = new Properties();
         properties.setProperty("reasonable", "true");
         properties.setProperty("supportMethodsArguments", "true");
+        properties.setProperty("mapUnderscoreToCamelCase", "true");
         properties.setProperty("returnPageInfo", "check");
         properties.setProperty("params", "count=countSql");
         pageHelper.setProperties(properties);
@@ -45,6 +46,8 @@ public class MybatisConfig implements TransactionManagementConfigurer{
         //添加插件
         bean.setPlugins(new Interceptor[]{pageHelper});
 		
+ 
+        
 		ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
 		try {
 			bean.setMapperLocations(resolver.getResources("classpath:cn/yuan/mybatis/dao/*.xml"));

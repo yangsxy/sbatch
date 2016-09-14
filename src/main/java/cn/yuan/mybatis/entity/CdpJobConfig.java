@@ -13,36 +13,51 @@ import javax.persistence.Table;
 public class CdpJobConfig implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
-    @Column(name = "Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@Column
 	private String name;
+	
 	@Column
 	private String code;
+	
 	@Column(name="job_type")
 	private Integer jobType;
+	
 	@Column
 	private String project;
+	
+	@Column
 	private String jobGroup;
+	
 	@Column
 	private Integer sort;
+	
 	@Column(name="job_content")
 	private String jobContent;
+	
 	@Column(name="status_flag")
 	private Integer statusFlag;
+	
 	@Column(name="interrupt_flag")
 	private Integer interruptFlag;
+	
 	@Column(name="creator_name")
 	private String creatorName;
+	
 	@Column(name="creator_id")
 	private String creatorId;
+	
 	@Column(name="updator_name")
 	private String updatorName;
+	
 	@Column(name="updator_id")
 	private String updatorId;
+	
 	@Column(name="server_create_time")
 	private Date serverCreateTime;
+	
 	@Column(name="server_update_time")
 	private Date serverUpdateTime;
 
@@ -172,6 +187,15 @@ public class CdpJobConfig implements Serializable{
 
 	public void setServerUpdateTime(Date serverUpdateTime) {
 		this.serverUpdateTime = serverUpdateTime;
+	}
+
+	@Override
+	public String toString() {
+		return "CdpJobConfig [id=" + id + ", name=" + name + ", code=" + code + ", jobType=" + jobType + ", project="
+				+ project + ", jobGroup=" + jobGroup + ", sort=" + sort + ", jobContent=" + jobContent + ", statusFlag="
+				+ statusFlag + ", interruptFlag=" + interruptFlag + ", creatorName=" + creatorName + ", creatorId="
+				+ creatorId + ", updatorName=" + updatorName + ", updatorId=" + updatorId + ", serverCreateTime="
+				+ serverCreateTime + ", serverUpdateTime=" + serverUpdateTime + "]";
 	}
 
 }

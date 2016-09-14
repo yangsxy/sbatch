@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	hai , girls，你好 !!
+	hai , girls，你好 !!不好
 	<input type="button" value="提交" />
-	<input type="text" name="name" value="你好" />
+	<input type="text" name="name" value="${user.name}" />
 </body>
 </html>

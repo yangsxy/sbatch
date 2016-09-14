@@ -24,5 +24,7 @@
     		</list>
     	</property>
     </bean>
+    <bean class="">
     
+    </bean>
 </beans>
