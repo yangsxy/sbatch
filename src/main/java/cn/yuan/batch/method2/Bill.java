@@ -1,8 +1,12 @@
 package cn.yuan.batch.method2;
 
-import cn.yuan.batch.User;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import cn.yuan.batch.User;
+@Table(name="bills")
 public class Bill {
+	@Id
 	private Long id;
 	private User user;
 	private Double fees;
@@ -57,4 +61,11 @@ public class Bill {
 	public void setPayStatus(int payStatus) {
 		this.payStatus = payStatus;
 	}
+
+	@Override
+	public String toString() {
+		return "Bill [id=" + id + ", user=" + user + ", fees=" + fees + ", paidFees=" + paidFees + ", unpaidFees="
+				+ unpaidFees + ", payStatus=" + payStatus + "]";
+	}
+	
 }

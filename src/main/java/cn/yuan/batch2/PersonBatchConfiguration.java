@@ -26,8 +26,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-@Configuration
-@EnableBatchProcessing
+//@Configuration
+//@EnableBatchProcessing
 public class PersonBatchConfiguration {
 	
 	private static final String PERSON_INSERT = "insert into Person (personName,personAge,personSex)values(:personName,:personAge,:personSex)";

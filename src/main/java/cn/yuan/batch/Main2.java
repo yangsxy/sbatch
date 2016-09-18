@@ -27,7 +27,7 @@ public class Main2 {
      */
     public static void main(String[] args) {
         ClassPathXmlApplicationContext c = new ClassPathXmlApplicationContext(
-                "application-batch.xml");
+                "applicationContext.xml");
         SimpleJobLauncher launcher = new SimpleJobLauncher();
         launcher.setJobRepository((JobRepository) c.getBean("jobRepository"));
         launcher.setTaskExecutor(new SyncTaskExecutor());
