@@ -19,7 +19,7 @@ public class User {
 		@Column
 	    private Double balance;
 		@Column(name="is_delete")
-		private Integer isDelete;
+		private Integer isDelete=1;
 		
 	    public Integer getIsDelete() {
 			return isDelete;

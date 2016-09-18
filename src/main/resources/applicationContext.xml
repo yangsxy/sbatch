@@ -21,10 +21,137 @@
     	<property name="locations">
     		<list>
     			<value>classpath:application.properties</value>
+    			<value>classpath:datasource.properties</value>
     		</list>
     	</property>
     </bean>
-    <bean class="">
-    
+    <bean id="readDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <!-- 基本属性 url、user、password -->
+        <property name="url" value="${jdbc.write.url}"/>
+        <property name="username" value="${jdbc.write.username}"/>
+        <!--java -cp druid-1.0.15.jar com.alibaba.druid.filter.config.ConfigTools
+            you_password -->
+        <property name="password" value="${jdbc.write.password}"/>
+
+        <!-- 配置初始化大小、最小、最大 -->
+        <property name="initialSize" value="1"/>
+        <property name="maxActive" value="20"/>
+        <property name="minIdle" value="2"/>
+        <property name="queryTimeout" value="10"/>
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000"/>
+
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+
+        <property name="validationQuery" value="SELECT NOW()"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="false"/>
+
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="false"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize"
+                  value="20"/>
+        <property name="defaultAutoCommit" value="true"/>
+        <!-- 配置监控统计拦截的filters -->
+        <!--<property name="connectionProperties" value="config.decrypt=true"/>-->
+
+        <property name="filters" value="config,mergeStat,slf4j"/>
+        <property name="proxyFilters">
+            <list>
+                <ref bean="stat-filter"/>
+            </list>
+        </property>
+        <!-- 定期保存DruidDataSource的监控记录 -->
+        <property name="timeBetweenLogStatsMillis" value="300000"/>
     </bean>
+    <bean id="writeDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+	init-method="init" destroy-method="close">
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="${jdbc.read.url}"/>
+		    <property name="username" value="${jdbc.read.username}"/>
+		<!--java -cp druid-1.0.15.jar com.alibaba.druid.filter.config.ConfigTools
+		        you_password -->
+		<property name="password" value="${jdbc.read.password}"/>
+		
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="2"/>
+	    <property name="maxActive" value="20"/>
+	    <property name="minIdle" value="1"/>
+	    <property name="queryTimeout" value="10"/>
+	
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="60000"/>
+		
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000"/>
+		
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000"/>
+		    <property name="removeAbandoned" value="true"/>
+		    <property name="removeAbandonedTimeout" value="1800"/>
+		
+		    <property name="validationQuery" value="SELECT NOW()"/>
+		    <property name="testWhileIdle" value="true"/>
+		    <property name="testOnBorrow" value="true"/>
+		    <property name="testOnReturn" value="false"/>
+		
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+		<property name="poolPreparedStatements" value="false"/>
+		    <property name="maxPoolPreparedStatementPerConnectionSize"
+		value="20"/>
+		    <property name="defaultAutoCommit" value="false"/>
+		<!-- 配置监控统计拦截的filters -->
+		    <!--<property name="connectionProperties" value="config.decrypt=true"/>-->
+		
+		<property name="filters" value="config,mergeStat,slf4j"/>
+		    <property name="proxyFilters">
+		        <list>
+		            <ref bean="stat-filter"/>
+		        </list>
+		    </property>
+		<!-- 定期保存DruidDataSource的监控记录 -->
+		<property name="timeBetweenLogStatsMillis" value="300000"/>
+	</bean>
+	
+	<!--慢SQL记录 -->
+    <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+        <property name="slowSqlMillis" value="10000"/>
+        <property name="logSlowSql" value="true"/>
+        <property name="mergeSql" value="true"/>
+    </bean>
+    <bean id="dataSource" class="cn.yuan.jndi.DynamicDataSource">
+    	<property name="targetDataSources">
+    		<map>
+    			<entry key="readDataSource" value-ref="readDataSource"/>
+    			<entry key="writeDataSource" value-ref="writeDataSource"/>
+    		</map>
+    	</property>
+    	<property name="defaultTargetDataSource" ref="writeDataSource"/>
+    </bean>
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="dataSource" ref="dataSource"/>
+    	<property name="mapperLocations" value="classpath:cn/yuan/mybatis/dao/*.xml"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    	<property name="basePackage" value="cn.yuan.mybatis.dao"/>
+    	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+    <!-- 事务管理配置 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    <!-- 使用全注解方式添加事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" order="2"/>
+    
+    <!-- Spring jdbcTemplate配置 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 </beans>

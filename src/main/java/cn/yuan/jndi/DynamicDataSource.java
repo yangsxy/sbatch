@@ -7,7 +7,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource{
 	@Override
 	protected Object determineCurrentLookupKey() {
 		// TODO Auto-generated method stub
-		return "business_write";
+		return DataSourceContextHolder.getDSType();
 	}
 
 }

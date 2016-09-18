@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.yuan.jndi.DataSource;
 import cn.yuan.mybatis.dao.UserMapper;
 import cn.yuan.mybatis.entity.User;
 
@@ -22,9 +23,10 @@ public class UserController {
 	
 	@RequestMapping("/get")
 	@ResponseBody
+	@DataSource("readDataSource")
 	public Object getUser(){
 		logger.info("I'm in the userController.");
-		return userMapper.selectUserByName("U1");
+		return userMapper.selectByPrimaryKey(2);
 	}
 	@RequestMapping("/getById")
 	@ResponseBody
@@ -34,6 +36,7 @@ public class UserController {
 	}
 	@RequestMapping("/insert")
 	@ResponseBody
+	@DataSource("writeDataSource")
 	public Object writeAUser(){
 		logger.info("I'll write a user into db");
 		User user = new User();
