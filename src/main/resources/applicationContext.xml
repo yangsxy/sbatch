@@ -28,11 +28,11 @@
     <bean id="readDataSource" class="com.alibaba.druid.pool.DruidDataSource"
           init-method="init" destroy-method="close">
         <!-- 基本属性 url、user、password -->
-        <property name="url" value="${jdbc.write.url}"/>
-        <property name="username" value="${jdbc.write.username}"/>
+        <property name="url" value="${jdbc.read.url}"/>
+        <property name="username" value="${jdbc.read.username}"/>
         <!--java -cp druid-1.0.15.jar com.alibaba.druid.filter.config.ConfigTools
             you_password -->
-        <property name="password" value="${jdbc.write.password}"/>
+        <property name="password" value="${jdbc.read.password}"/>
 
         <!-- 配置初始化大小、最小、最大 -->
         <property name="initialSize" value="1"/>
@@ -73,11 +73,11 @@
     <bean id="writeDataSource" class="com.alibaba.druid.pool.DruidDataSource"
 	init-method="init" destroy-method="close">
 		<!-- 基本属性 url、user、password -->
-		<property name="url" value="${jdbc.read.url}"/>
-		    <property name="username" value="${jdbc.read.username}"/>
+		<property name="url" value="${jdbc.write.url}"/>
+		    <property name="username" value="${jdbc.write.username}"/>
 		<!--java -cp druid-1.0.15.jar com.alibaba.druid.filter.config.ConfigTools
 		        you_password -->
-		<property name="password" value="${jdbc.read.password}"/>
+		<property name="password" value="${jdbc.write.password}"/>
 		
 		<!-- 配置初始化大小、最小、最大 -->
 		<property name="initialSize" value="2"/>

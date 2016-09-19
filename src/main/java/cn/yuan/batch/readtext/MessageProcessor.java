@@ -1,6 +1,8 @@
-package cn.yuan.batch;
+package cn.yuan.batch.readtext;
 
 import org.springframework.batch.item.ItemProcessor;
+
+import cn.yuan.batch.User;
 
 /**
  * Created by yuandg on 2016/5/4.

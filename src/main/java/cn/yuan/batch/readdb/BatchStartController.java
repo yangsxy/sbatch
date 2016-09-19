@@ -1,4 +1,4 @@
-package cn.yuan.batch;
+package cn.yuan.batch.readdb;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,12 +42,13 @@ public class BatchStartController {
         SimpleJobLauncher launcher = new SimpleJobLauncher();
         launcher.setJobRepository(jobRepository);
         launcher.setTaskExecutor(new SyncTaskExecutor());
+        Date startTime = new Date();
         try {
             Map<String, JobParameter> parameters = new HashMap<String, JobParameter>();
             parameters.put(RUN_TIME_KEY, new JobParameter(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())));
             
             JobExecution je = launcher.run(billingJob,new JobParameters(parameters));
-            System.out.println("......................");
+            System.out.println(".......start at:"+startTime+",end at:"+new Date()+"...............");
             System.out.println(je);
             
         } catch (Exception e) {

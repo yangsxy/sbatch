@@ -21,17 +21,17 @@
 
     <bean id="messageReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
         <property name="lineMapper" ref="lineMapper"/>
-        <property name="resource" value="cn/yuan/batch/user.txt"/>
+        <property name="resource" value="cn/yuan/batch/readtext/user.txt"/>
     </bean>
 
     <bean id="lineMapper" class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
         <property name="lineTokenizer" ref="lineTokenizer"/>
         <property name="fieldSetMapper" ref="fieldSetMapper"/>
     </bean>
-    <bean id="fieldSetMapper" class="cn.yuan.batch.UserMapper"/>
+    <bean id="fieldSetMapper" class="cn.yuan.batch.readtext.UserMapper"/>
     <bean id="lineTokenizer" class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer"/>
 
-    <bean id="messageProcessor" class="cn.yuan.batch.MessageProcessor"/>
-    <bean id="messageWriter" class="cn.yuan.batch.MessageWriter"/>
+    <bean id="messageProcessor" class="cn.yuan.batch.readtext.MessageProcessor"/>
+    <bean id="messageWriter" class="cn.yuan.batch.readtext.MessageWriter"/>
     <bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"/>
 </beans>

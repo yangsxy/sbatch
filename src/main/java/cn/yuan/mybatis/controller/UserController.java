@@ -25,18 +25,16 @@ public class UserController {
 	@ResponseBody
 	@DataSource("readDataSource")
 	public Object getUser(){
-		logger.info("I'm in the userController.");
 		return userMapper.selectByPrimaryKey(2);
 	}
 	@RequestMapping("/getById")
 	@ResponseBody
+	@DataSource("writeDataSource")
 	public Object getUserById(){
-		logger.info("I'm in the userController.");
 		return userMapper.selectByPrimaryKey(2);
 	}
 	@RequestMapping("/insert")
 	@ResponseBody
-	@DataSource("writeDataSource")
 	public Object writeAUser(){
 		logger.info("I'll write a user into db");
 		User user = new User();

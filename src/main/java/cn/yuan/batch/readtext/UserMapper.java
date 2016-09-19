@@ -1,8 +1,10 @@
-package cn.yuan.batch;
+package cn.yuan.batch.readtext;
 
 import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;
+
+import cn.yuan.batch.User;
 
 /**
  * Created by yuandg on 2016/5/4.

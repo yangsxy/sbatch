@@ -1,4 +1,4 @@
-package cn.yuan.batch;
+package cn.yuan.batch.readtext;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;

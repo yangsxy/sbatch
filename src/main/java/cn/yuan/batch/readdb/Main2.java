@@ -1,4 +1,4 @@
-package cn.yuan.batch;
+package cn.yuan.batch.readdb;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

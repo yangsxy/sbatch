@@ -1,33 +1,29 @@
-package cn.yuan.batch.method2;
+package cn.yuan.mybatis.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import cn.yuan.batch.User;
 @Table(name="bills")
 public class Bill {
 	@Id
 	private Long id;
-	private User user;
+	@Column
 	private Double fees;
+	@Column(name="paid_fees")
 	private Double paidFees;
+	@Column(name="unpaid_fees")
 	private Double unpaidFees;
+	@Column(name="pay_status")
 	private int payStatus;
-
+	@Column(name="user_id")
+	private Long userId;
+	
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public Double getFees() {
@@ -62,10 +58,18 @@ public class Bill {
 		this.payStatus = payStatus;
 	}
 
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
-		return "Bill [id=" + id + ", user=" + user + ", fees=" + fees + ", paidFees=" + paidFees + ", unpaidFees="
-				+ unpaidFees + ", payStatus=" + payStatus + "]";
+		return "Bill [id=" + id + ", fees=" + fees + ", paidFees=" + paidFees + ", unpaidFees=" + unpaidFees
+				+ ", payStatus=" + payStatus + ", userId=" + userId + "]";
 	}
-	
+
 }

@@ -13,6 +13,7 @@ public class DataSourceContextHolder {
 		}else if (oldType.equals("readDataSource")) {
 			contextHolder.set(type);
 		}else{
+			System.err.println("can not change write to read dataSource...........");
 		}
 	}
 	

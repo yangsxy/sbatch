@@ -1,9 +1,11 @@
-package cn.yuan.batch;
+package cn.yuan.batch.readdb;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import cn.yuan.batch.User;
 
 public class UserDbMapper implements RowMapper<User> {
 

@@ -19,7 +19,7 @@
 				<batch:listener ref="jobBillingListener"/>
 			</batch:listeners>
 		</batch:job>
-		<bean id="jobBillingListener" class="cn.yuan.batch.method2.JobBillingListener"/>
+		<bean id="jobBillingListener" class="cn.yuan.batch.readdb.JobBillingListener"/>
 		
 		<!-- 
 			<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -45,17 +45,17 @@
 		</bean>
 		
 		<!-- 处理start -->
-		<bean id="billingProcessor" class="cn.yuan.batch.method2.BillingItemProcessor"/>
+		<bean id="billingProcessor" class="cn.yuan.batch.readdb.BillingItemProcessor"/>
 		<!-- 处理end -->
 		
 		<!-- 读start -->
 		<bean id="userDbReader" class="org.springframework.batch.item.database.JdbcPagingItemReader">
 			<!-- 指定读数据源 -->
-			<property name="dataSource" ref="dataSource"/>
+			<property name="dataSource" ref="readDataSource"/>
 			<property name="rowMapper" ref="userDbMapper"/>
 			<property name="queryProvider" ref="userQueryProvider"/>
 		</bean>
-		<bean id="userDbMapper" class="cn.yuan.batch.UserDbMapper"/>
+		<bean id="userDbMapper" class="cn.yuan.batch.readdb.UserDbMapper"/>
 		<bean id="userQueryProvider" class="org.springframework.batch.item.database.support.MySqlPagingQueryProvider">
 			<property name="selectClause" value="u.id,u.name,u.age,u.balance"/>
 			<property name="fromClause" value="users u"/>
@@ -73,9 +73,9 @@
 		<!-- 写start -->
 		<bean id="billingWriter" class="org.springframework.batch.item.database.JdbcBatchItemWriter">
 			<!-- 指定写数据源 -->
-			<property name="dataSource" ref="readDataSource"/>
+			<property name="dataSource" ref="dataSource"/>
 			<property name="sql" value="insert into bills(id,user_id,fees,paid_fees,unpaid_fees,pay_status)
-					values(:id,:user.id,:fees,:paidFees,:unpaidFees,:payStatus)"/>
+					values(:id,:userId,:fees,:paidFees,:unpaidFees,:payStatus)"/>
 			<property name="itemSqlParameterSourceProvider" ref="itemSqlParameterSourceProvider"/>
 		</bean>
 		<bean id="itemSqlParameterSourceProvider" class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
