@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.yuan.mybatis.dao.CustomerMapper" >
+  <resultMap id="BaseResultMap" type="cn.yuan.mybatis.entity.Customer" >
+    <id column="customerID" property="customerid" jdbcType="BIGINT" />
+    <result column="commercialID" property="commercialid" jdbcType="BIGINT" />
+    <result column="brandId" property="brandid" jdbcType="BIGINT" />
+    <result column="memberID" property="memberid" jdbcType="BIGINT" />
+    <result column="commercialMemberId" property="commercialmemberid" jdbcType="BIGINT" />
+    <result column="groupID" property="groupid" jdbcType="BIGINT" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="invoice" property="invoice" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="modifyDateTime" property="modifydatetime" jdbcType="TIMESTAMP" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="marriage" property="marriage" jdbcType="TINYINT" />
+    <result column="monthlyIncome" property="monthlyincome" jdbcType="VARCHAR" />
+    <result column="carDetailed" property="cardetailed" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="idCards" property="idcards" jdbcType="VARCHAR" />
+    <result column="interest" property="interest" jdbcType="VARCHAR" />
+    <result column="createDateTime" property="createdatetime" jdbcType="TIMESTAMP" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="invoiceTitle" property="invoicetitle" jdbcType="VARCHAR" />
+    <result column="ctype" property="ctype" jdbcType="BIT" />
+    <result column="source" property="source" jdbcType="TINYINT" />
+    <result column="channel" property="channel" jdbcType="BIT" />
+    <result column="synFlag" property="synflag" jdbcType="VARCHAR" />
+    <result column="isNeedConfirm" property="isneedconfirm" jdbcType="BIT" />
+    <result column="isAcceptSubscription" property="isacceptsubscription" jdbcType="BIT" />
+    <result column="consumePassword" property="consumepassword" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="levelId" property="levelid" jdbcType="BIGINT" />
+    <result column="upgradeTime" property="upgradetime" jdbcType="TIMESTAMP" />
+    <result column="upgradeCommercialId" property="upgradecommercialid" jdbcType="BIGINT" />
+    <result column="memberCard" property="membercard" jdbcType="VARCHAR" />
+    <result column="ext" property="ext" jdbcType="VARCHAR" />
+    <result column="entityCard" property="entitycard" jdbcType="VARCHAR" />
+    <result column="bizSource" property="bizsource" jdbcType="BIT" />
+    <result column="createUser" property="createuser" jdbcType="VARCHAR" />
+    <result column="environmentHobby" property="environmenthobby" jdbcType="VARCHAR" />
+    <result column="isDisable" property="isdisable" jdbcType="TINYINT" />
+    <result column="updatorId" property="updatorid" jdbcType="BIGINT" />
+    <result column="loginType" property="logintype" jdbcType="TINYINT" />
+    <result column="loginId" property="loginid" jdbcType="VARCHAR" />
+    <result column="customerMainId" property="customermainid" jdbcType="BIGINT" />
+    <result column="wxIconUrl" property="wxiconurl" jdbcType="VARCHAR" />
+    <result column="attentionWxTime" property="attentionwxtime" jdbcType="TIMESTAMP" />
+    <result column="bindFlag" property="bindflag" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    customerID, commercialID, brandId, memberID, commercialMemberId, groupID, country, 
+    nation, invoice, name, status, modifyDateTime, sex, mobile, tel, company, address, 
+    birthday, email, marriage, monthlyIncome, carDetailed, department, idCards, interest, 
+    createDateTime, memo, invoiceTitle, ctype, source, channel, synFlag, isNeedConfirm, 
+    isAcceptSubscription, consumePassword, userId, levelId, upgradeTime, upgradeCommercialId, 
+    memberCard, ext, entityCard, bizSource, createUser, environmentHobby, isDisable, 
+    updatorId, loginType, loginId, customerMainId, wxIconUrl, attentionWxTime, bindFlag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where customerID = #{customerid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from customer
+    where customerID = #{customerid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.yuan.mybatis.entity.Customer" >
+    insert into customer (customerID, commercialID, brandId, 
+      memberID, commercialMemberId, groupID, 
+      country, nation, invoice, 
+      name, status, modifyDateTime, 
+      sex, mobile, tel, company, 
+      address, birthday, email, 
+      marriage, monthlyIncome, carDetailed, 
+      department, idCards, interest, 
+      createDateTime, memo, invoiceTitle, 
+      ctype, source, channel, synFlag, 
+      isNeedConfirm, isAcceptSubscription, consumePassword, 
+      userId, levelId, upgradeTime, 
+      upgradeCommercialId, memberCard, ext, 
+      entityCard, bizSource, createUser, 
+      environmentHobby, isDisable, updatorId, 
+      loginType, loginId, customerMainId, 
+      wxIconUrl, attentionWxTime, bindFlag
+      )
+    values (#{customerid,jdbcType=BIGINT}, #{commercialid,jdbcType=BIGINT}, #{brandid,jdbcType=BIGINT}, 
+      #{memberid,jdbcType=BIGINT}, #{commercialmemberid,jdbcType=BIGINT}, #{groupid,jdbcType=BIGINT}, 
+      #{country,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{invoice,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{modifydatetime,jdbcType=TIMESTAMP}, 
+      #{sex,jdbcType=TINYINT}, #{mobile,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{company,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{email,jdbcType=VARCHAR}, 
+      #{marriage,jdbcType=TINYINT}, #{monthlyincome,jdbcType=VARCHAR}, #{cardetailed,jdbcType=VARCHAR}, 
+      #{department,jdbcType=VARCHAR}, #{idcards,jdbcType=VARCHAR}, #{interest,jdbcType=VARCHAR}, 
+      #{createdatetime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR}, #{invoicetitle,jdbcType=VARCHAR}, 
+      #{ctype,jdbcType=BIT}, #{source,jdbcType=TINYINT}, #{channel,jdbcType=BIT}, #{synflag,jdbcType=VARCHAR}, 
+      #{isneedconfirm,jdbcType=BIT}, #{isacceptsubscription,jdbcType=BIT}, #{consumepassword,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=VARCHAR}, #{levelid,jdbcType=BIGINT}, #{upgradetime,jdbcType=TIMESTAMP}, 
+      #{upgradecommercialid,jdbcType=BIGINT}, #{membercard,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR}, 
+      #{entitycard,jdbcType=VARCHAR}, #{bizsource,jdbcType=BIT}, #{createuser,jdbcType=VARCHAR}, 
+      #{environmenthobby,jdbcType=VARCHAR}, #{isdisable,jdbcType=TINYINT}, #{updatorid,jdbcType=BIGINT}, 
+      #{logintype,jdbcType=TINYINT}, #{loginid,jdbcType=VARCHAR}, #{customermainid,jdbcType=BIGINT}, 
+      #{wxiconurl,jdbcType=VARCHAR}, #{attentionwxtime,jdbcType=TIMESTAMP}, #{bindflag,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.yuan.mybatis.entity.Customer" >
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerid != null" >
+        customerID,
+      </if>
+      <if test="commercialid != null" >
+        commercialID,
+      </if>
+      <if test="brandid != null" >
+        brandId,
+      </if>
+      <if test="memberid != null" >
+        memberID,
+      </if>
+      <if test="commercialmemberid != null" >
+        commercialMemberId,
+      </if>
+      <if test="groupid != null" >
+        groupID,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="invoice != null" >
+        invoice,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="modifydatetime != null" >
+        modifyDateTime,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="marriage != null" >
+        marriage,
+      </if>
+      <if test="monthlyincome != null" >
+        monthlyIncome,
+      </if>
+      <if test="cardetailed != null" >
+        carDetailed,
+      </if>
+      <if test="department != null" >
+        department,
+      </if>
+      <if test="idcards != null" >
+        idCards,
+      </if>
+      <if test="interest != null" >
+        interest,
+      </if>
+      <if test="createdatetime != null" >
+        createDateTime,
+      </if>
+      <if test="memo != null" >
+        memo,
+      </if>
+      <if test="invoicetitle != null" >
+        invoiceTitle,
+      </if>
+      <if test="ctype != null" >
+        ctype,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="synflag != null" >
+        synFlag,
+      </if>
+      <if test="isneedconfirm != null" >
+        isNeedConfirm,
+      </if>
+      <if test="isacceptsubscription != null" >
+        isAcceptSubscription,
+      </if>
+      <if test="consumepassword != null" >
+        consumePassword,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="levelid != null" >
+        levelId,
+      </if>
+      <if test="upgradetime != null" >
+        upgradeTime,
+      </if>
+      <if test="upgradecommercialid != null" >
+        upgradeCommercialId,
+      </if>
+      <if test="membercard != null" >
+        memberCard,
+      </if>
+      <if test="ext != null" >
+        ext,
+      </if>
+      <if test="entitycard != null" >
+        entityCard,
+      </if>
+      <if test="bizsource != null" >
+        bizSource,
+      </if>
+      <if test="createuser != null" >
+        createUser,
+      </if>
+      <if test="environmenthobby != null" >
+        environmentHobby,
+      </if>
+      <if test="isdisable != null" >
+        isDisable,
+      </if>
+      <if test="updatorid != null" >
+        updatorId,
+      </if>
+      <if test="logintype != null" >
+        loginType,
+      </if>
+      <if test="loginid != null" >
+        loginId,
+      </if>
+      <if test="customermainid != null" >
+        customerMainId,
+      </if>
+      <if test="wxiconurl != null" >
+        wxIconUrl,
+      </if>
+      <if test="attentionwxtime != null" >
+        attentionWxTime,
+      </if>
+      <if test="bindflag != null" >
+        bindFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerid != null" >
+        #{customerid,jdbcType=BIGINT},
+      </if>
+      <if test="commercialid != null" >
+        #{commercialid,jdbcType=BIGINT},
+      </if>
+      <if test="brandid != null" >
+        #{brandid,jdbcType=BIGINT},
+      </if>
+      <if test="memberid != null" >
+        #{memberid,jdbcType=BIGINT},
+      </if>
+      <if test="commercialmemberid != null" >
+        #{commercialmemberid,jdbcType=BIGINT},
+      </if>
+      <if test="groupid != null" >
+        #{groupid,jdbcType=BIGINT},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="invoice != null" >
+        #{invoice,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="modifydatetime != null" >
+        #{modifydatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        #{marriage,jdbcType=TINYINT},
+      </if>
+      <if test="monthlyincome != null" >
+        #{monthlyincome,jdbcType=VARCHAR},
+      </if>
+      <if test="cardetailed != null" >
+        #{cardetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="idcards != null" >
+        #{idcards,jdbcType=VARCHAR},
+      </if>
+      <if test="interest != null" >
+        #{interest,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatetime != null" >
+        #{createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetitle != null" >
+        #{invoicetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        #{ctype,jdbcType=BIT},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=TINYINT},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=BIT},
+      </if>
+      <if test="synflag != null" >
+        #{synflag,jdbcType=VARCHAR},
+      </if>
+      <if test="isneedconfirm != null" >
+        #{isneedconfirm,jdbcType=BIT},
+      </if>
+      <if test="isacceptsubscription != null" >
+        #{isacceptsubscription,jdbcType=BIT},
+      </if>
+      <if test="consumepassword != null" >
+        #{consumepassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="levelid != null" >
+        #{levelid,jdbcType=BIGINT},
+      </if>
+      <if test="upgradetime != null" >
+        #{upgradetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upgradecommercialid != null" >
+        #{upgradecommercialid,jdbcType=BIGINT},
+      </if>
+      <if test="membercard != null" >
+        #{membercard,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="entitycard != null" >
+        #{entitycard,jdbcType=VARCHAR},
+      </if>
+      <if test="bizsource != null" >
+        #{bizsource,jdbcType=BIT},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="environmenthobby != null" >
+        #{environmenthobby,jdbcType=VARCHAR},
+      </if>
+      <if test="isdisable != null" >
+        #{isdisable,jdbcType=TINYINT},
+      </if>
+      <if test="updatorid != null" >
+        #{updatorid,jdbcType=BIGINT},
+      </if>
+      <if test="logintype != null" >
+        #{logintype,jdbcType=TINYINT},
+      </if>
+      <if test="loginid != null" >
+        #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="customermainid != null" >
+        #{customermainid,jdbcType=BIGINT},
+      </if>
+      <if test="wxiconurl != null" >
+        #{wxiconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionwxtime != null" >
+        #{attentionwxtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bindflag != null" >
+        #{bindflag,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.yuan.mybatis.entity.Customer" >
+    update customer
+    <set >
+      <if test="commercialid != null" >
+        commercialID = #{commercialid,jdbcType=BIGINT},
+      </if>
+      <if test="brandid != null" >
+        brandId = #{brandid,jdbcType=BIGINT},
+      </if>
+      <if test="memberid != null" >
+        memberID = #{memberid,jdbcType=BIGINT},
+      </if>
+      <if test="commercialmemberid != null" >
+        commercialMemberId = #{commercialmemberid,jdbcType=BIGINT},
+      </if>
+      <if test="groupid != null" >
+        groupID = #{groupid,jdbcType=BIGINT},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="invoice != null" >
+        invoice = #{invoice,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="modifydatetime != null" >
+        modifyDateTime = #{modifydatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null" >
+        marriage = #{marriage,jdbcType=TINYINT},
+      </if>
+      <if test="monthlyincome != null" >
+        monthlyIncome = #{monthlyincome,jdbcType=VARCHAR},
+      </if>
+      <if test="cardetailed != null" >
+        carDetailed = #{cardetailed,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        department = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="idcards != null" >
+        idCards = #{idcards,jdbcType=VARCHAR},
+      </if>
+      <if test="interest != null" >
+        interest = #{interest,jdbcType=VARCHAR},
+      </if>
+      <if test="createdatetime != null" >
+        createDateTime = #{createdatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null" >
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoicetitle != null" >
+        invoiceTitle = #{invoicetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        ctype = #{ctype,jdbcType=BIT},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=TINYINT},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=BIT},
+      </if>
+      <if test="synflag != null" >
+        synFlag = #{synflag,jdbcType=VARCHAR},
+      </if>
+      <if test="isneedconfirm != null" >
+        isNeedConfirm = #{isneedconfirm,jdbcType=BIT},
+      </if>
+      <if test="isacceptsubscription != null" >
+        isAcceptSubscription = #{isacceptsubscription,jdbcType=BIT},
+      </if>
+      <if test="consumepassword != null" >
+        consumePassword = #{consumepassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="levelid != null" >
+        levelId = #{levelid,jdbcType=BIGINT},
+      </if>
+      <if test="upgradetime != null" >
+        upgradeTime = #{upgradetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upgradecommercialid != null" >
+        upgradeCommercialId = #{upgradecommercialid,jdbcType=BIGINT},
+      </if>
+      <if test="membercard != null" >
+        memberCard = #{membercard,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="entitycard != null" >
+        entityCard = #{entitycard,jdbcType=VARCHAR},
+      </if>
+      <if test="bizsource != null" >
+        bizSource = #{bizsource,jdbcType=BIT},
+      </if>
+      <if test="createuser != null" >
+        createUser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="environmenthobby != null" >
+        environmentHobby = #{environmenthobby,jdbcType=VARCHAR},
+      </if>
+      <if test="isdisable != null" >
+        isDisable = #{isdisable,jdbcType=TINYINT},
+      </if>
+      <if test="updatorid != null" >
+        updatorId = #{updatorid,jdbcType=BIGINT},
+      </if>
+      <if test="logintype != null" >
+        loginType = #{logintype,jdbcType=TINYINT},
+      </if>
+      <if test="loginid != null" >
+        loginId = #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="customermainid != null" >
+        customerMainId = #{customermainid,jdbcType=BIGINT},
+      </if>
+      <if test="wxiconurl != null" >
+        wxIconUrl = #{wxiconurl,jdbcType=VARCHAR},
+      </if>
+      <if test="attentionwxtime != null" >
+        attentionWxTime = #{attentionwxtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bindflag != null" >
+        bindFlag = #{bindflag,jdbcType=TINYINT},
+      </if>
+    </set>
+    where customerID = #{customerid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.yuan.mybatis.entity.Customer" >
+    update customer
+    set commercialID = #{commercialid,jdbcType=BIGINT},
+      brandId = #{brandid,jdbcType=BIGINT},
+      memberID = #{memberid,jdbcType=BIGINT},
+      commercialMemberId = #{commercialmemberid,jdbcType=BIGINT},
+      groupID = #{groupid,jdbcType=BIGINT},
+      country = #{country,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      invoice = #{invoice,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      modifyDateTime = #{modifydatetime,jdbcType=TIMESTAMP},
+      sex = #{sex,jdbcType=TINYINT},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      company = #{company,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      email = #{email,jdbcType=VARCHAR},
+      marriage = #{marriage,jdbcType=TINYINT},
+      monthlyIncome = #{monthlyincome,jdbcType=VARCHAR},
+      carDetailed = #{cardetailed,jdbcType=VARCHAR},
+      department = #{department,jdbcType=VARCHAR},
+      idCards = #{idcards,jdbcType=VARCHAR},
+      interest = #{interest,jdbcType=VARCHAR},
+      createDateTime = #{createdatetime,jdbcType=TIMESTAMP},
+      memo = #{memo,jdbcType=VARCHAR},
+      invoiceTitle = #{invoicetitle,jdbcType=VARCHAR},
+      ctype = #{ctype,jdbcType=BIT},
+      source = #{source,jdbcType=TINYINT},
+      channel = #{channel,jdbcType=BIT},
+      synFlag = #{synflag,jdbcType=VARCHAR},
+      isNeedConfirm = #{isneedconfirm,jdbcType=BIT},
+      isAcceptSubscription = #{isacceptsubscription,jdbcType=BIT},
+      consumePassword = #{consumepassword,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=VARCHAR},
+      levelId = #{levelid,jdbcType=BIGINT},
+      upgradeTime = #{upgradetime,jdbcType=TIMESTAMP},
+      upgradeCommercialId = #{upgradecommercialid,jdbcType=BIGINT},
+      memberCard = #{membercard,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR},
+      entityCard = #{entitycard,jdbcType=VARCHAR},
+      bizSource = #{bizsource,jdbcType=BIT},
+      createUser = #{createuser,jdbcType=VARCHAR},
+      environmentHobby = #{environmenthobby,jdbcType=VARCHAR},
+      isDisable = #{isdisable,jdbcType=TINYINT},
+      updatorId = #{updatorid,jdbcType=BIGINT},
+      loginType = #{logintype,jdbcType=TINYINT},
+      loginId = #{loginid,jdbcType=VARCHAR},
+      customerMainId = #{customermainid,jdbcType=BIGINT},
+      wxIconUrl = #{wxiconurl,jdbcType=VARCHAR},
+      attentionWxTime = #{attentionwxtime,jdbcType=TIMESTAMP},
+      bindFlag = #{bindflag,jdbcType=TINYINT}
+    where customerID = #{customerid,jdbcType=BIGINT}
+  </update>
+</mapper>
